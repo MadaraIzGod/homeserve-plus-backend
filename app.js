@@ -15,7 +15,7 @@ app.use(helmet());
 app.use(
   cors({
     origin: [
-      "https://homeserve-frontend-beryl.vercel.app",
+      "https://homeserve-plus-frontend.vercel.app",
       "http://localhost:5000",
       "http://localhost:3000",
       "http://localhost:3001",
