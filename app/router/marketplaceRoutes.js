@@ -1,0 +1,10 @@
+const r = require("express").Router(); const c = require("../controller/marketplaceController"); const { protect, allow } = require("../middleware/security");
+r.get("/home", c.home); r.get("/services", c.services); r.get("/services/:slug", c.service); r.get("/workers", c.workers);
+r.get("/customer/dashboard",protect,allow("customer"),c.customerDashboard);
+r.get("/addresses", protect, allow("customer"), c.addresses); r.post("/addresses", protect, allow("customer"), c.addAddress); r.delete("/addresses/:id", protect, allow("customer"), c.deleteAddress);
+r.patch("/addresses/:id",protect,allow("customer"),c.updateAddress);
+r.post("/coupons/validate", protect, allow("customer"), c.validateCoupon); r.post("/bookings", protect, allow("customer"), c.createBooking); r.get("/bookings/my", protect, c.myBookings); r.patch("/bookings/:id/status", protect, c.updateBooking); r.post("/bookings/:id/payment-order", protect, allow("customer"), c.paymentOrder);
+r.get("/favorites",protect,allow("customer"),c.favorites);r.put("/favorites/:id", protect, allow("customer"), c.favorite); r.post("/reviews", protect, allow("customer"), c.review); r.get("/complaints/my",protect,allow("customer"),c.myComplaints);r.post("/complaints", protect, allow("customer"), c.complaint);r.post("/bookings/:id/payment-verify",protect,allow("customer"),c.verifyPayment);
+r.post("/bookings/:id/cod-payment",protect,allow("worker","admin"),c.confirmCodPayment);
+r.get("/admin/stats", protect, allow("admin"), c.adminStats); r.post("/admin/categories", protect, allow("admin"), c.createCategory); r.post("/admin/services", protect, allow("admin"), c.createService); r.patch("/admin/workers/:id/verify", protect, allow("admin"), c.verifyWorker);
+module.exports = r;

@@ -1,0 +1,1 @@
+const r=require("express").Router(),{protect}=require("../middleware/security"),{cloudinarySignature}=require("../service/integrations");r.get("/uploads/signature",protect,(_req,res)=>res.json(cloudinarySignature()));module.exports=r;

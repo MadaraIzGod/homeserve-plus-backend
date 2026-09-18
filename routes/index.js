@@ -1,0 +1,1 @@
+const router=require("express").Router();router.use("/auth",require("./auth.routes"));router.use(require("./marketplace.routes"));router.use(require("./admin-worker.routes"));router.use(require("./integration.routes"));module.exports=router;
